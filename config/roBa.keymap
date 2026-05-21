@@ -43,8 +43,9 @@
         };
 
         hankaku_zenkaku {
-            bindings = <&kp GRAVE>;
-            key-positions = <39 40>;
+            bindings = <&lt 5 GRAVE>;
+            key-positions = <38 41>;
+            timeout-ms = <100>;
         };
     };
 
@@ -127,6 +128,8 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
             >;
+
+            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         layer_6 {
