@@ -58,11 +58,11 @@ cp /c/Users/user/Downloads/firmware/roBa_R-seeeduino_xiao_ble-zmk.uf2 /e/
 cp /c/Users/user/Downloads/firmware/roBa_L-seeeduino_xiao_ble-zmk.uf2 /e/
 ```
 
-※ `/e/` は `XIAO-SENSE` のドライブレター。環境によって異なる場合は以下で確認:
+※ Win環境：PowerShellでは以下コマンドで実施
 
 ```bash
-powershell -Command "Get-Disk | Select-Object Number, FriendlyName | Format-Table"
-powershell -Command "Get-Partition -DiskNumber 2 | Select-Object DriveLetter"
+Copy-Item "C:\Users\user\Downloads\firmware\roBa_L-seeeduino_xiao_ble-zmk.uf2" E:\
+Copy-Item "C:\Users\user\Downloads\firmware\roBa_R-seeeduino_xiao_ble-zmk.uf2" E:\
 ```
 
 書き込み後、自動で再起動 → 設定反映完了。
