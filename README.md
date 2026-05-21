@@ -27,12 +27,16 @@ roBa キーボード用 ZMK ファームウェア設定リポジトリ
 
 ### 3. uf2 ファイルをダウンロード
 
-1. [Actions ページ](https://github.com/abe-yusuke-6706/zmk-roBa-config/actions) で最新のビルドをクリック
-2. ページ下部の **Artifacts** セクションから **firmware** (zip) をダウンロード
-3. 解凍すると以下のファイルが入っている:
+1. [Actions ページ](https://github.com/abe-yusuke-6706/zmk-roBa-config/actions) で最新のビルド（緑チェック）をクリック
+2. **ページを一番下までスクロール**する
+3. **Artifacts** セクションの **firmware** (zip) をクリックしてダウンロード
+4. ダウンロードした `firmware.zip` を **右クリック → すべて展開** で解凍する
+5. 解凍されたフォルダ内に以下のファイルがある:
    - `roBa_R-seeeduino_xiao_ble-zmk.uf2` （右手側）
    - `roBa_L-seeeduino_xiao_ble-zmk.uf2` （左手側）
    - `settings_reset-seeeduino_xiao_ble-zmk.uf2` （設定リセット用）
+
+**注意:** zip を展開せずに中のファイルを直接コピーするとエラーになる。必ず先に展開すること。
 
 ### 4. roBa にファームウェアを書き込み
 
@@ -40,11 +44,30 @@ roBa キーボード用 ZMK ファームウェア設定リポジトリ
 
 1. USB ケーブルで roBa（右手側）を PC に接続
 2. XIAO BLE のリセットボタンを **素早く2回押し**（ダブルタップ）
-3. `XIAO-SENSE` という USB ドライブが PC に表示される
-4. `roBa_R-seeeduino_xiao_ble-zmk.uf2` をドラッグ＆ドロップ
-5. 自動で再起動 → 設定反映完了
+3. `XIAO-SENSE` という USB ドライブが PC に表示される（ドライブレターは環境による）
 
-左手側も更新する場合は同じ手順で `roBa_L` の uf2 を書き込む。
+#### 書き込み方法: コマンドライン（推奨）
+
+GUI のドラッグ＆ドロップでは「予期しないエラー」が出ることがある。ターミナル（Git Bash 等）から以下のコマンドで書き込む:
+
+```bash
+# 右手側
+cp /c/Users/user/Downloads/firmware/roBa_R-seeeduino_xiao_ble-zmk.uf2 /e/
+
+# 左手側（必要な場合のみ）
+cp /c/Users/user/Downloads/firmware/roBa_L-seeeduino_xiao_ble-zmk.uf2 /e/
+```
+
+※ `/e/` は `XIAO-SENSE` のドライブレター。環境によって異なる場合は以下で確認:
+
+```bash
+powershell -Command "Get-Disk | Select-Object Number, FriendlyName | Format-Table"
+powershell -Command "Get-Partition -DiskNumber 2 | Select-Object DriveLetter"
+```
+
+書き込み後、自動で再起動 → 設定反映完了。
+
+左手側も更新する場合は、左手側を USB 接続してリセットダブルタップ → 同じ手順で `roBa_L` の uf2 を書き込む。
 
 ## どの変更でどちらを書き込むか
 
