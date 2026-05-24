@@ -56,6 +56,18 @@
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_LAYER_0";
         };
+
+        ime_on: ime_on {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANG1>, <&kp INT_HENKAN>;
+        };
+
+        ime_off: ime_off {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANG2>, <&kp INT_MUHENKAN>;
+        };
     };
 
     behaviors {
